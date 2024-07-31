@@ -22,12 +22,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             exit(); // Asegúrate de llamar a exit después de redirigir
         } else {
             // Credenciales incorrectas
-            echo "Usuario o contraseña incorrectos.";
+            header('Location: login.php?error=' . urlencode('Usuario o contraseña incorrectos.'));
+            exit();
         }
     } catch (PDOException $e) {
-        echo "Error en la consulta: " . $e->getMessage();
+        header('Location: login.php?error=' . urlencode('Error en la consulta: ' . $e->getMessage()));
+        exit();
     }
 } else {
-    echo "Por favor, complete el formulario.";
+    header('Location: login.php?error=' . urlencode('Por favor, complete el formulario.'));
+    exit();
 }
-?>
