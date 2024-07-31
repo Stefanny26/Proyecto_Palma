@@ -3,10 +3,10 @@ version: "3.8"  # Especifica la versión del formato de Docker Compose que se es
 services:  # Define los servicios que se ejecutarán en contenedores.
 
   postgres:  # Servicio para la base de datos PostgreSQL.
-    image: postgres  
+    image: postgres  # Usa la imagen oficial de PostgreSQL.
     restart: always  # Reinicia el contenedor automáticamente si se detiene.
     ports:
-      - "5432:5432"  
+      - "5432:5432"  # Mapea el puerto 5432 del contenedor al puerto 5432 del host (para acceso a la base de datos).
     environment:
       - POSTGRES_USER=postgres  
       - POSTGRES_PASSWORD=root 
