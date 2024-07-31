@@ -1,39 +1,61 @@
-version: "3.8"  # Especifica la versión del formato de Docker Compose que se está utilizando.
+version: "3.8"
 
-services:  # Define los servicios que se ejecutarán en contenedores.
-
-  postgres:  # Servicio para la base de datos PostgreSQL.
-    image: postgres  # Usa la imagen oficial de PostgreSQL.
-    restart: always  # Reinicia el contenedor automáticamente si se detiene.
+services:
+  postgres:
+    image: postgres
+    restart: always
     ports:
-      - "5432:5432"  # Mapea el puerto 5432 del contenedor al puerto 5432 del host (para acceso a la base de datos).
+      - "5432:5432"
     environment:
-      - POSTGRES_USER=postgres  
-      - POSTGRES_PASSWORD=root 
-      - POSTGRES_DB=Proyecto_U1_G1  
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=Proyecto_U1_G1
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Monta un volumen para almacenar datos persistentes de PostgreSQL.
-      - postgres_backups:/backups  # Monta un volumen para almacenar respaldos de la base de datos.
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_backups:/backups
 
-  pgadmin:  # Servicio para pgAdmin 
-    image: dpage/pgadmin4  
+  pgadmin:
+    image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com  
-      - PGADMIN_DEFAULT_PASSWORD=admin  
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
     ports:
-      - "80:80"  # Mapea el puerto 80 del contenedor al puerto 80 del host (para acceso a la interfaz web de pgAdmin).
+      - "80:80"
     depends_on:
-      - postgres  # Asegura que el contenedor de pgAdmin se inicie después del contenedor de PostgreSQL.
+      - postgres
 
-  web:  # Servicio para la aplicación web PHP.
-    build: . 
+  web:
+    build: .
     volumes:
-      - ./src:/var/www/html  
+      - ./src:/var/www/html
     ports:
-      - "8080:80"  
+      - "8080:80"
     depends_on:
-      - postgres  # Asegura que el contenedor de la aplicación web se inicie después del contenedor de PostgreSQL.
+      - postgres
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+  postgres_exporter:
+    image: wrouesnel/postgres_exporter
+    ports:
+      - "9187:9187"
+    environment:
+      - DATA_SOURCE_NAME=postgresql://postgres:root@postgres:5432/Proyecto_U1_G1?sslmode=disable
+    depends_on:
+      - postgres
 
 volumes:
-  postgres_data:  # Define un volumen para los datos persistentes de PostgreSQL.
-  postgres_backups:  # Define un volumen para los respaldos de la base de datos.
+  postgres_data:
+  postgres_backups:
