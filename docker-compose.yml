@@ -1,37 +1,39 @@
-version: "3.8"
-services:
-  postgres:
-    image: postgres
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=Proyecto_U1_G1
-    volumes:
-      - postgres_data:/var/lib/postgresql/data  # Datos de PostgreSQL
-      - postgres_backups:/backups  # Almacén de respaldos
+version: "3.8"  # Especifica la versión del formato de Docker Compose que se está utilizando.
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    ports:
-      - "80:80"
-    depends_on:
-      - postgres
+services:  # Define los servicios que se ejecutarán en contenedores.
 
-  web:
-    build: .  # Usa el Dockerfile en el directorio actual
-    volumes:
-      - ./src:/var/www/html  # Montar tu proyecto PHP
+  postgres:  # Servicio para la base de datos PostgreSQL.
+    image: postgres  
+    restart: always  # Reinicia el contenedor automáticamente si se detiene.
     ports:
-      - "8080:80"  # Cambia el puerto del host a 8080
+      - "5432:5432"  
+    environment:
+      - POSTGRES_USER=postgres  
+      - POSTGRES_PASSWORD=root 
+      - POSTGRES_DB=Proyecto_U1_G1  
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Monta un volumen para almacenar datos persistentes de PostgreSQL.
+      - postgres_backups:/backups  # Monta un volumen para almacenar respaldos de la base de datos.
+
+  pgadmin:  # Servicio para pgAdmin 
+    image: dpage/pgadmin4  
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com  
+      - PGADMIN_DEFAULT_PASSWORD=admin  
+    ports:
+      - "80:80"  # Mapea el puerto 80 del contenedor al puerto 80 del host (para acceso a la interfaz web de pgAdmin).
     depends_on:
-      - postgres
+      - postgres  # Asegura que el contenedor de pgAdmin se inicie después del contenedor de PostgreSQL.
+
+  web:  # Servicio para la aplicación web PHP.
+    build: . 
+    volumes:
+      - ./src:/var/www/html  
+    ports:
+      - "8080:80"  
+    depends_on:
+      - postgres  # Asegura que el contenedor de la aplicación web se inicie después del contenedor de PostgreSQL.
 
 volumes:
-  postgres_data:
-  postgres_backups:
+  postgres_data:  # Define un volumen para los datos persistentes de PostgreSQL.
+  postgres_backups:  # Define un volumen para los respaldos de la base de datos.
