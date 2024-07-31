@@ -1,5 +1,6 @@
 <?php
-// Configuración de la base de datos
+// Configuracion de la base de datos
+//Conectar a Pgadmin
 $host = 'postgres';
 $db = 'Proyecto_U1_G1';
 $user = 'postgres';
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         $stmt->execute([':descripcion' => $descripcion]);
 
-        // Redirigir a la página de tipos de productos después de insertar
+        // Redirigir a la página de tipos de productos despues de insertar
         header("Location: TipoProducto.php");
         exit();
 
