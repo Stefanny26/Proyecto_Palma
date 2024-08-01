@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body>
+<body class="lead">
     <div class="login-container">
         <i class="fas fa-user-circle"></i>
         <h2>Iniciar sesión</h2>
@@ -81,3 +81,4 @@
     </script>
 </body>
 </html>
+

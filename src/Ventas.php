@@ -273,7 +273,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_empleado = $_POST['id_empleado'];
         $fecha_venta = $_POST['fecha_venta'];
 
-        $sql_venta = "INSERT INTO Ventas (id_cliente, id_empleado, fecha_venta) VALUES (:id_cliente, :id_empleado, :fecha_venta) RETURNING id_venta";
+        $sql_venta = "INSERT INTO Ventas (id_cliente, id_empleado, fecha_venta) VALUES
+         (:id_cliente, :id_empleado, :fecha_venta) RETURNING id_venta";
         $stmt_venta = $conn->prepare($sql_venta);
         $stmt_venta->execute([
             ':id_cliente' => $id_cliente,
@@ -287,7 +288,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cantidades = $_POST['cantidad'];
         $precios_unitarios = $_POST['precio_unitario'];
     
-        $sql_detalle_venta = "INSERT INTO Detalles_Ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES (:id_venta, :id_producto, :cantidad, :precio_unitario)";
+        $sql_detalle_venta = "INSERT INTO Detalles_Ventas (id_venta, id_producto, cantidad, precio_unitario) VALUES
+         (:id_venta, :id_producto, :cantidad, :precio_unitario)";
         $stmt_detalle_venta = $conn->prepare($sql_detalle_venta);
 
         $num_productos = count($id_productos);

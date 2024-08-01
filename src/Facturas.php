@@ -31,7 +31,7 @@
                 <li class="nav-item"><a class="nav-link" href="Ventas.php">Ventas</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Cerrar sesión</a></li>
                 </ul>
-            </div>
+        </div>
     </div>
   </nav>
 
