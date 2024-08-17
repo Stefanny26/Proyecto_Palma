@@ -116,7 +116,7 @@ function getRoleBasedActions($id_empleado) {
                 $roleFilter = '';
                 if (hasRole('Vendedor')) {
                     $roleFilter = " AND te.descripcion = 'Vendedor'";
-                } elseif (hasRole('cosecha')) {
+                } elseif (hasRole('Palmicultor')) {
                     $roleFilter = " AND te.descripcion = 'Palmicultores'";
                 }
 
