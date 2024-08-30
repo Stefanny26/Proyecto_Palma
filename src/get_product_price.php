@@ -3,7 +3,7 @@ if (isset($_POST['id_producto'])) {
     $id_producto = $_POST['id_producto'];
 
     try {
-        $host = 'postgres';
+        $host = 'postgres-master';
         $db = 'Proyecto_U1_G1';
         $user = 'postgres';
         $password = 'root';

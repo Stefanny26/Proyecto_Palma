@@ -56,7 +56,7 @@ include 'db.php';
             <a href="nueva_cosecha.php" class="btn btn-success">Agregar Nueva Cosecha</a>
             <?php
             // Configuración de la base de datos
-            $host = 'postgres';
+            $host = 'postgres-master';
             $db = 'Proyecto_U1_G1';
             $user = 'postgres';
             $password = 'root';

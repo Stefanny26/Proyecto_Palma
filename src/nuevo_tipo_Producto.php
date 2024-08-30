@@ -1,7 +1,7 @@
 <?php
 // Configuracion de la base de datos
 //Conectar a Pgadmin
-$host = 'postgres';
+$host = 'postgres-master';
 $db = 'Proyecto_U1_G1';
 $user = 'postgres';
 $password = 'root';

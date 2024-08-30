@@ -53,7 +53,7 @@ include 'db.php';
                             <option selected>Seleccione una opción</option>
                             <?php
                             try {
-                                $dsn = "pgsql:host=postgres;dbname=Proyecto_U1_G1";
+                                $dsn = "pgsql:host=postgres-master;dbname=Proyecto_U1_G1";
                                 $conn = new PDO($dsn, 'postgres', 'root');
                                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -255,7 +255,7 @@ include 'db.php';
 
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $host = "postgres";
+    $host = "postgres-master";
     $dbname = "Proyecto_U1_G1";
     $user = "postgres";
     $password = "root";

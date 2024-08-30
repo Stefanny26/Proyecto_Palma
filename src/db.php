@@ -1,6 +1,6 @@
 <?php
 // Configuración de la base de datos
-$host = 'postgres'; // Dirección IP del contenedor PostgreSQL
+$host = 'postgres-master'; // Dirección IP del contenedor PostgreSQL
 $db = 'Proyecto_U1_G1';
 $user = 'postgres';
 $password = 'root';

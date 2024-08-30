@@ -55,7 +55,7 @@ include 'db.php';
                 <a href="nuevo_tipo_empleado.php" class="btn btn-success">Agregar Nuevo Cargo</a>
             <?php
             // Configuración de la base de datos
-            $host = 'postgres';
+            $host = 'postgres-master';
             $db = 'Proyecto_U1_G1';
             $user = 'postgres';
             $password = 'root';

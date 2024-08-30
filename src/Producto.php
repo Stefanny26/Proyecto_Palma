@@ -103,7 +103,7 @@ function getRoleBasedActions($id_producto) {
 
             <?php
             // Configuración de la base de datos
-            $host = 'postgres';
+            $host = 'postgres-master';
             $db = 'Proyecto_U1_G1';
             $user = 'postgres';
             $password = 'root';
